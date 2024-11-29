@@ -15,7 +15,7 @@
 library("geomorph")
 
 #select TPS file
-TPS <- readland.tps("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/Landmarks.tps", specID="ID")
+TPS <- readland.tps("Landmarks.tps", specID="ID")
 any(is.na(TPS))
 
 #get dimensions
@@ -55,7 +55,7 @@ lmks <- data.frame(CP = c(6,8), BDP = c(5,9), BDA = c(3,10), PPFL = c(7,10), HD 
 lineardists <- interlmkdist(TPS, lmks) #switched from gdf_c to TPS
 
 #Import linear distances
-dat <- read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/lineardistances_FL.csv")
+dat <- read.csv("lineardistances_FL.csv")
 
 #remove rows with NA (FL was not measured based on selection criteria)
 dat2 <- na.omit(dat)
@@ -432,7 +432,7 @@ t.test(ind_clusters.lineardist$trans.CP.FINAL, as.numeric(ind_clusters.lineardis
 #========================
 #Stable Isotope Analysis 
 #========================
-SI <- read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/clusters_isotopes.csv")
+SI <- read.csv("clusters_isotopes.csv")
 
 #apply discrimination factors
 SI$X13c.value1= SI$X13c.value1  - 1.2 #C PLAS
@@ -441,7 +441,7 @@ SI$X15n.value1 = SI$X15n.value1 - 0.9 #N PLAS
 SI$X15n.value2 = SI$X15n.value2 - 1.1  #N RBC
 
 #import formatted SI data
-SI_difference_raw <- read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/clusters_isotopes_discriminated.csv")
+SI_difference_raw <- read.csv("clusters_isotopes_discriminated.csv")
 
 #calculate habitat and trophic switch values (plasma-RBC)
 C_difference <- as.data.frame.vector(SI_difference_raw$C_RBC - SI_difference_raw$C_plasma)
@@ -467,8 +467,8 @@ t.test(SI_difference[SI_difference$cluster == 1, "N_difference"],SI_difference[S
 library(lme4)
 
 #read in formatted data
-SIA_C_clus<-read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/SIA_C_clus.csv")
-SIA_N_clus<-read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/SIA_N_clus.csv")
+SIA_C_clus<-read.csv("SIA_C_clus.csv")
+SIA_N_clus<-read.csv("SIA_N_clus.csv")
 
 #these models include fixed and random factors to try and remove the variance explained by 'length'
 SIA_N_clus_1=SIA_N_clus[SIA_N_clus$cluster_2018.2019==1,]
@@ -494,8 +494,8 @@ summary(WIC_N1)
 #calculation of individual WIC
 #======================================
 #import formatted data
-SIA_C_pair<-read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/SIA_C_pair.csv")
-SIA_N_pair<-read.csv("C:/Users/Stephanie/Desktop/UNBC/Cod Data/Morphometrics/Morpho Paper/Journal Submission/Final Submission/Github/SIA_N_pair.csv")
+SIA_C_pair<-read.csv("SIA_C_pair.csv")
+SIA_N_pair<-read.csv("SIA_N_pair.csv")
 
 #Nitrogen
 mod_n<-(lm(dN_p ~ dN_rbc, data = SIA_N_pair))  # Fit the model
